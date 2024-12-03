@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Montanan English Translator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #2b2d42;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+        }
+        main {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #2b2d42;
+        }
+        .translator {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .translator textarea {
+            width: 100%;
+            height: 100px;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: none;
+        }
+        .charts {
+            margin-top: 2rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 0.5rem;
+            text-align: center;
+        }
+        th {
+            background-color: #2b2d42;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Montanan English Translator</h1>
+    </header>
+    <main>
+        <h2>Translate</h2>
+        <div class="translator">
+            <div>
+                <h3>English to Montanan English</h3>
+                <textarea id="englishInput" placeholder="Type English here..."></textarea>
+                <button onclick="translateToMontanan()">Translate</button>
+                <p><strong>Output:</strong> <span id="montananOutput"></span></p>
+            </div>
+            <div>
+                <h3>Montanan English to English</h3>
+                <textarea id="montananInput" placeholder="Type Montanan English here..."></textarea>
+                <button onclick="translateToEnglish()">Translate</button>
+                <p><strong>Output:</strong> <span id="englishOutput"></span></p>
+            </div>
+        </div>
+        <div class="charts">
+            <h2>Alphabet Chart</h2>
+            <table>
+                <tr>
+                    <th>Letter</th>
+                    <th>Symbol</th>
+                </tr>
+                <tr><td>A</td><td>⟂</td></tr>
+                <tr><td>B</td><td>⨀</td></tr>
+                <tr><td>C</td><td>⋔</td></tr>
+                <tr><td>D</td><td>⨅</td></tr>
+                <tr><td>E</td><td>⟊</td></tr>
+                <tr><td>F</td><td>⟟</td></tr>
+                <tr><td>G</td><td>⨂</td></tr>
+                <tr><td>H</td><td>⟐</td></tr>
+                <tr><td>I</td><td>⟌</td></tr>
+                <tr><td>J</td><td>⨉</td></tr>
+                <tr><td>K</td><td>⟏</td></tr>
+                <tr><td>L</td><td>⨃</td></tr>
+                <tr><td>M</td><td>⨎</td></tr>
+                <tr><td>N</td><td>⟔</td></tr>
+                <tr><td>O</td><td>⟗</td></tr>
+                <tr><td>P</td><td>⟉</td></tr>
+                <tr><td>Q</td><td>⨌</td></tr>
+                <tr><td>R</td><td>⟇</td></tr>
+                <tr><td>S</td><td>⨓</td></tr>
+                <tr><td>T</td><td>⟒</td></tr>
+                <tr><td>U</td><td>⟔</td></tr>
+                <tr><td>V</td><td>⨁</td></tr>
+                <tr><td>W</td><td>⨄</td></tr>
+                <tr><td>X</td><td>⟍</td></tr>
+                <tr><td>Y</td><td>⟘</td></tr>
+                <tr><td>Z</td><td>⨅</td></tr>
+            </table>
+            <h2>Basic Words Chart</h2>
+            <table>
+                <tr>
+                    <th>English</th>
+                    <th>Montanan English</th>
+                </tr>
+                <tr><td>Hello</td><td>⟐⟊⨃⨃⟗</td></tr>
+                <tr><td>World</td><td>⨄⟗⟐⨃⨅</td></tr>
+                <tr><td>Yes</td><td>⟘⟊⨓</td></tr>
+                <tr><td>No</td><td>⟔⟗</td></tr>
+                <tr><td>Goodbye</td><td>⨂⟗⟗⨅⨀⟊⟘</td></tr>
+            </table>
+        </div>
+    </main>
+    <script>
+        const alphabet = {
+            "A": "⟂", "B": "⨀", "C": "⋔", "D": "⨅", "E": "⟊", "F": "⟟",
+            "G": "⨂", "H": "⟐", "I": "⟌", "J": "⨉", "K": "⟏", "L": "⨃",
+            "M": "⨎", "N": "⟔", "O": "⟗", "P": "⟉", "Q": "⨌", "R": "⟇",
+            "S": "⨓", "T": "⟒", "U": "⟔", "V": "⨁", "W": "⨄", "X": "⟍",
+            "Y": "⟘", "Z": "⨅"
+        };
+
+        function translateToMontanan() {
+            const input = document.getElementById("englishInput").value.toUpperCase();
+            let result = "";
+            for (let char of input) {
+                result += alphabet[char] || char;
+            }
+            document.getElementById("montananOutput").textContent = result;
+        }
+
+        function translateToEnglish() {
+            const input = document.getElementById("montananInput").value;
+            const reverseAlphabet = Object.fromEntries(Object.entries(alphabet).map(([k, v]) => [v, k]));
+            let result = "";
+            for (let char of input) {
+                result += reverseAlphabet[char] || char;
+            }
+            document.getElementById("englishOutput").textContent = result;
+        }
+    </script>
+</body>
+</html>
