@@ -18,6 +18,11 @@
             text-align: center;
             padding: 1rem 0;
         }
+        header h2 {
+            color: #4CAF50;
+            font-size: 1.5rem;
+            margin-top: 0.5rem;
+        }
         main {
             max-width: 900px;
             margin: 2rem auto;
@@ -65,6 +70,7 @@
 <body>
     <header>
         <h1>Montanan English Translator</h1>
+        <h2>NADY APPROVED</h2>
     </header>
     <main>
         <h2>Translate</h2>
@@ -109,12 +115,12 @@
                 <tr><td>R</td><td>⟇</td></tr>
                 <tr><td>S</td><td>⨓</td></tr>
                 <tr><td>T</td><td>⟒</td></tr>
-                <tr><td>U</td><td>⟔</td></tr>
+                <tr><td>U</td><td>⟖</td></tr>
                 <tr><td>V</td><td>⨁</td></tr>
                 <tr><td>W</td><td>⨄</td></tr>
                 <tr><td>X</td><td>⟍</td></tr>
                 <tr><td>Y</td><td>⟘</td></tr>
-                <tr><td>Z</td><td>⨅</td></tr>
+                <tr><td>Z</td><td>⟝</td></tr>
             </table>
             <h2>Basic Words Chart</h2>
             <table>
@@ -132,33 +138,32 @@
     </main>
     <script>
         const alphabet = {
-    "A": "⟂", "B": "⨀", "C": "⋔", "D": "⨅", "E": "⟊", "F": "⟟",
-    "G": "⨂", "H": "⟐", "I": "⟌", "J": "⨉", "K": "⟏", "L": "⨃",
-    "M": "⨎", "N": "⟔", "O": "⟗", "P": "⟉", "Q": "⨌", "R": "⟇",
-    "S": "⨓", "T": "⟒", "U": "⟔", "V": "⨁", "W": "⨄", "X": "⟍",
-    "Y": "⟘", "Z": "⟝"
-};
+            "A": "⟂", "B": "⨀", "C": "⋔", "D": "⨅", "E": "⟊", "F": "⟟",
+            "G": "⨂", "H": "⟐", "I": "⟌", "J": "⨉", "K": "⟏", "L": "⨃",
+            "M": "⨎", "N": "⟔", "O": "⟗", "P": "⟉", "Q": "⨌", "R": "⟇",
+            "S": "⨓", "T": "⟒", "U": "⟖", "V": "⨁", "W": "⨄", "X": "⟍",
+            "Y": "⟘", "Z": "⟝"
+        };
 
-const reverseAlphabet = Object.fromEntries(Object.entries(alphabet).map(([k, v]) => [v, k]));
+        const reverseAlphabet = Object.fromEntries(Object.entries(alphabet).map(([k, v]) => [v, k]));
 
-function translateToMontanan() {
-    const input = document.getElementById("englishInput").value.toUpperCase();
-    let result = "";
-    for (let char of input) {
-        result += alphabet[char] || char; // Default to original character if no mapping exists
-    }
-    document.getElementById("montananOutput").textContent = result;
-}
+        function translateToMontanan() {
+            const input = document.getElementById("englishInput").value.toUpperCase();
+            let result = "";
+            for (let char of input) {
+                result += alphabet[char] || char; // Default to original character if no mapping exists
+            }
+            document.getElementById("montananOutput").textContent = result;
+        }
 
-function translateToEnglish() {
-    const input = document.getElementById("montananInput").value;
-    let result = "";
-    for (let char of input) {
-        result += reverseAlphabet[char] || char; // Default to original character if no mapping exists
-    }
-    document.getElementById("englishOutput").textContent = result;
-}
-
+        function translateToEnglish() {
+            const input = document.getElementById("montananInput").value;
+            let result = "";
+            for (let char of input) {
+                result += reverseAlphabet[char] || char; // Default to original character if no mapping exists
+            }
+            document.getElementById("englishOutput").textContent = result;
+        }
     </script>
 </body>
 </html>
