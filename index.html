@@ -132,31 +132,33 @@
     </main>
     <script>
         const alphabet = {
-            "A": "⟂", "B": "⨀", "C": "⋔", "D": "⨅", "E": "⟊", "F": "⟟",
-            "G": "⨂", "H": "⟐", "I": "⟌", "J": "⨉", "K": "⟏", "L": "⨃",
-            "M": "⨎", "N": "⟔", "O": "⟗", "P": "⟉", "Q": "⨌", "R": "⟇",
-            "S": "⨓", "T": "⟒", "U": "⟔", "V": "⨁", "W": "⨄", "X": "⟍",
-            "Y": "⟘", "Z": "⨅"
-        };
+    "A": "⟂", "B": "⨀", "C": "⋔", "D": "⨅", "E": "⟊", "F": "⟟",
+    "G": "⨂", "H": "⟐", "I": "⟌", "J": "⨉", "K": "⟏", "L": "⨃",
+    "M": "⨎", "N": "⟔", "O": "⟗", "P": "⟉", "Q": "⨌", "R": "⟇",
+    "S": "⨓", "T": "⟒", "U": "⟔", "V": "⨁", "W": "⨄", "X": "⟍",
+    "Y": "⟘", "Z": "⨅"
+};
 
-        function translateToMontanan() {
-            const input = document.getElementById("englishInput").value.toUpperCase();
-            let result = "";
-            for (let char of input) {
-                result += alphabet[char] || char;
-            }
-            document.getElementById("montananOutput").textContent = result;
-        }
+const reverseAlphabet = Object.fromEntries(Object.entries(alphabet).map(([k, v]) => [v, k]));
 
-        function translateToEnglish() {
-            const input = document.getElementById("montananInput").value;
-            const reverseAlphabet = Object.fromEntries(Object.entries(alphabet).map(([k, v]) => [v, k]));
-            let result = "";
-            for (let char of input) {
-                result += reverseAlphabet[char] || char;
-            }
-            document.getElementById("englishOutput").textContent = result;
-        }
+function translateToMontanan() {
+    const input = document.getElementById("englishInput").value.toUpperCase();
+    let result = "";
+    for (let char of input) {
+        result += alphabet[char] || char; // Default to original character if no mapping exists
+    }
+    document.getElementById("montananOutput").textContent = result;
+}
+
+function translateToEnglish() {
+    const input = document.getElementById("montananInput").value;
+    let result = "";
+    for (let char of input) {
+        result += reverseAlphabet[char] || char; // Default to original character if no mapping exists
+    }
+    document.getElementById("englishOutput").textContent = result;
+}
+
     </script>
 </body>
 </html>
